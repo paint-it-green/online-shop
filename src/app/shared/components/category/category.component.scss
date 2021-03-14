@@ -1,0 +1,11 @@
+.category {
+  width: 25vh;
+
+  &--skeleton {
+    display: block;
+    margin: 1vh;
+  }
+  &--item {
+    text-transform: capitalize;
+  }
+}

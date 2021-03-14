@@ -1,3 +1,16 @@
-<div class="list">
-  <p>product-list works!</p>
-</div>
+<main class="list-content">
+
+  <app-category class="category" (onSelectCategory)="onSelectCategory($event)"></app-category>
+
+  <section class="product">
+
+    <app-product-skeleton [count]="skeletonCount" *ngIf="productLoader"></app-product-skeleton>
+
+    <div class="product--inner" *ngIf="!productLoader">
+      <app-product-item [item]="product" *ngFor="let product of products" class="product--inner--item">
+      </app-product-item>
+    </div>
+
+  </section>
+
+</main>
