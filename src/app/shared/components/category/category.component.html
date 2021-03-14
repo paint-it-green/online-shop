@@ -1,0 +1,13 @@
+<ul nz-menu nzMode="inline" class="category">
+  <li nz-menu-group nzTitle="Categories">
+    <ul>
+      <li *ngIf="categoryLoader">
+        <nz-skeleton-element nzType="input" [nzActive]="true" class="category--skeleton"
+          *ngFor="let item of [1,2,3,4,5]"> </nz-skeleton-element>
+      </li>
+      <li nz-menu-item [nzSelected]="category === selectedCategory" class="category--item"
+        *ngFor="let category of categories" (click)="selectCategory(category)">
+        {{category}}</li>
+    </ul>
+  </li>
+</ul>

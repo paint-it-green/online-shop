@@ -1,0 +1,14 @@
+.skeleton {
+  display: flex;
+  width: 100%;
+  cursor: pointer;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+
+  &--item {
+    width: 25vh;
+    margin: 0.5vh;
+    padding: 1vh;
+    background: white;
+  }
+}

@@ -1,0 +1,27 @@
+.app {
+  &__header {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+
+  &__content {
+    width: 80%;
+    margin: 0 auto;
+
+    &__search {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      &--logo {
+        width: 10vh;
+      }
+
+      &__input {
+        flex-grow: 0.8;
+        margin-left: auto;
+      }
+    }
+  }
+}

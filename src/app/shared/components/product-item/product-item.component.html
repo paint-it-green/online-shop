@@ -1,0 +1,18 @@
+<div class="item">
+
+  <div class="item__img-container">
+    <img [src]="item.image" [alt]="item.title" class="item__img">
+  </div>
+
+  <div class="item--info">
+    <h4 class="item--title">{{item.title}}</h4>
+
+    <app-star-rating [input]="item.rating"></app-star-rating>
+
+    <div class="item--price">
+      <label class="item--price--value">${{item.price}}</label>
+      <label class="item--price--sold">{{item.totalSold}} sold </label>
+    </div>
+  </div>
+
+</div>
