@@ -1,15 +1,18 @@
 <main class="list-content">
 
-  <app-category class="category" (onSelectCategory)="onSelectCategory($event)"></app-category>
+  <app-category class="category" type="tile" (onSelectCategory)="onSelectCategory($event)"></app-category>
 
   <section class="product">
 
-    <app-product-skeleton [count]="skeletonCount" *ngIf="productLoader"></app-product-skeleton>
+    <ng-template [ngIf]="isLoading" [ngIfElse]="product">
+      <app-product-skeleton [count]="skeletonCount"></app-product-skeleton>
+    </ng-template>
 
-    <div class="product--inner" *ngIf="!productLoader">
-      <app-product-item [item]="product" *ngFor="let product of products" class="product--inner--item">
+    <ng-template #product>
+      <app-product-item [item]="product" *ngFor="let product of products" class="product--item"
+        (click)="viewProduct(product)">
       </app-product-item>
-    </div>
+    </ng-template>
 
   </section>
 

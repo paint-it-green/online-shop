@@ -1,24 +1,23 @@
 .list-content {
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: space-between;
 
   .category {
-    margin: 0.5vh 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    margin-bottom: 5vh;
   }
+
   .product {
 
-    &--inner {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: flex-end;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
 
-      &--item {
-        background-color: #fff;
-        display: flex;
-        width: 25vh;
-        margin: 0.5vh;
-      }
+    &--item {
+      background-color: #fff;
+      display: flex;
+      width: 25vh;
+      margin: 0.5vh;
     }
   }
 }

@@ -1,7 +1,9 @@
-import { Component, EventEmitter, OnInit, Output } from "@angular/core";
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 
 import { ApiService } from "src/app/core/services/api";
+
+type CategoryTile = { name: string, icon: string };
 
 @Component({
   selector: "app-category",
@@ -14,11 +16,19 @@ export class CategoryComponent implements OnInit {
     private readonly _activeRoute: ActivatedRoute,
     private readonly _apiService: ApiService,
   ) { }
+
+  @Input() type: "tile" | "sidebar" | undefined;
   @Output() onSelectCategory = new EventEmitter<string>();
 
-  categories = [] as Array<string>;
+  categories = [] as Array<any>;
   selectedCategory = "all";
-  categoryLoader = true;
+  isLoading = true;
+  private readonly _icons = [
+    "assets/svg/cpu.svg",
+    "assets/svg/necklace.svg",
+    "assets/svg/male-clothes.svg",
+    "assets/svg/cocktail-dress.svg"
+  ];
 
   ngOnInit(): void {
     this._getCategories();
@@ -28,10 +38,10 @@ export class CategoryComponent implements OnInit {
   private async _getCategories(): Promise<void> {
     try {
       const categories = await this._apiService.get("productCategories").toPromise();
-      this.categories = ["all", ...categories];
-      this.categoryLoader = false;
+      this.categories = this.type === "tile" ? this._getCategoryAsTile(categories) : ["all", ...categories];
+      this.isLoading = false;
     } catch (error) {
-      this.categoryLoader = false;
+      this.isLoading = false;
     }
   }
 
@@ -45,9 +55,20 @@ export class CategoryComponent implements OnInit {
   }
 
   private _setActive(): void {
-    const category = this._activeRoute.snapshot.paramMap.get("category");
-    const active = category ? category.toLowerCase() : "all";
-    this.selectCategory(active, false);
+    if (this.type === "sidebar") {
+      const category = this._activeRoute.snapshot.queryParamMap.get("category");
+      const active = category ? category.toLowerCase() : "all";
+      this.selectCategory(active, false);
+    }
+  }
+
+  private _getCategoryAsTile(categories: Array<string>): Array<CategoryTile> {
+    return categories.map((category, index) => {
+      return {
+        name: category,
+        icon: this._icons[index]
+      };
+    });
   }
 
 }

@@ -1,1 +1,78 @@
-<p>product-details works!</p>
+<main class="product">
+
+  <ng-template [ngIf]="isLoading" [ngIfElse]="productTemplate">
+    <div nz-row>
+      <div nz-col nzSpan="12" class="product__content text-center">
+        <nz-skeleton-element nzType="image" size="100" [nzActive]="true" class="product__content__img avatar">
+        </nz-skeleton-element>
+      </div>
+      <div nz-col nzSpan="12" class="product__content details">
+        <nz-skeleton [nzActive]="true"></nz-skeleton>
+        <nz-skeleton [nzActive]="true"></nz-skeleton>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #productTemplate>
+    <div nz-row>
+
+      <div nz-col nzSpan="12" class="product__content text-center">
+        <img nz-image class="product__content__img" [nzSrc]="product.image" alt="">
+      </div>
+
+      <div nz-col nzSpan="12" class="product__content details">
+        <h2>{{product.title}}</h2>
+        <div class="rating">
+          <div>
+            <app-star-rating [input]="product.rating" class="rating--star"></app-star-rating>
+          </div>
+          <div>
+            <h3>{{product.totalSold}} sold</h3>
+          </div>
+        </div>
+
+        <div class="product__content__price">
+          <h1>${{product.price}}</h1>
+        </div>
+        <p>
+          {{product.description}}
+        </p>
+
+        <div class="product__purchase">
+
+          <div class="product__purchase__qty">
+            <nz-input-group nzSearch nzSize="large" [nzPrefix]="minusButton" [nzSuffix]="plusButton">
+              <input nz-input nz-tooltip nzTooltipTrigger="focus" nzTooltipPlacement="top"
+                nzOverlayClassName="numeric-input" [nzTooltipTitle]="'Input a number'" [(ngModel)]="qty"
+                (keypress)="numberOnly($event)" />
+            </nz-input-group>
+            <ng-template #minusButton>
+              <button nz-button nzType="text" (click)="minusQty()">
+                <i nz-icon nzType="minus" nzTheme="outline"></i>
+              </button>
+            </ng-template>
+            <ng-template #plusButton>
+              <button nz-button nzType="text" (click)="addQty()">
+                <i nz-icon nzType="plus" nzTheme="outline"></i>
+              </button>
+            </ng-template>
+          </div>
+
+
+          <div>
+            <button nz-button nzType="primary" nzSize="large" class="product__purchase__btn cart">
+              <i nz-icon nzType="shopping-cart" nzTheme="outline"></i>Add to Cart
+            </button>
+            <button nz-button nzType="primary" nzSize="large" class="product__purchase__btn buy">
+              Buy Now
+            </button>
+          </div>
+        </div>
+
+
+      </div>
+
+    </div>
+  </ng-template>
+
+</main>
