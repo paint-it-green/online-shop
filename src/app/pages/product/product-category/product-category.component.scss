@@ -1,0 +1,23 @@
+.list-content {
+  .sider {
+    background: none;
+    .category {
+      margin: 0.5vh 0;
+    }
+  }
+  .product {
+    padding-left: 10vh;
+    &--inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+
+      &--item {
+        background-color: #fff;
+        display: flex;
+        width: 25vh;
+        margin: 0.5vh;
+      }
+    }
+  }
+}

@@ -1,11 +1,24 @@
 .category {
-  width: 25vh;
-
   &--skeleton {
     display: block;
     margin: 1vh;
   }
   &--item {
     text-transform: capitalize;
+  }
+  &--tile {
+    background-color: #fff;
+    width: 20vh;
+    margin: 0.5vh;
+    text-align: center;
+    padding: 1.5vh;
+    cursor: pointer;
+
+    &__img {
+      width: 5vh;
+    }
+    &--name {
+      text-transform: capitalize;
+    }
   }
 }

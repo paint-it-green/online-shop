@@ -1,0 +1,95 @@
+.product {
+  background-color: white;
+
+  &__content {
+    padding: 3vh 5vh;
+
+    &.details {
+      padding-left: 0;
+    }
+
+    &__img {
+      max-width: 50vh;
+      max-height: 50vh;
+      width: auto;
+      height: auto;
+
+      &.avatar {
+        width: 50vh;
+        height: 50vh;
+      }
+    }
+
+    &__price {
+      background-color: #fafafa;
+      padding: 1.5vh 2vh;
+      margin: 2vh 0;
+
+      h1 {
+        font-size: 4vh;
+        margin: 0;
+        color: #ee4d2d;
+      }
+    }
+  }
+
+  &__purchase {
+    margin-top: 5vh;
+
+    &__qty {
+      width: 15vh;
+      input {
+        text-align: center;
+      }
+    }
+    &__btn {
+      width: 17vh;
+      margin-right: 1vh;
+      margin-top: 1vh;
+      font-size: 1.5vh;
+      height: 5vh;
+
+      &.cart {
+        background-color: rgba($color: #ee4d2d, $alpha: 0.2);
+        border: 1px solid #ee4d2d;
+        color: #ee4d2d;
+      }
+
+      &.buy {
+        background-color: #ee4d2d;
+        border: 1px solid #ee4d2d;
+      }
+    }
+  }
+
+  .rating {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: start;
+
+    & > div {
+      padding: 0 2vh;
+      position: relative;
+    }
+
+    & > div:not(:last-child):after {
+      content: "";
+      height: 60%;
+      width: 2px;
+      position: absolute;
+      right: 0;
+      bottom: 25%;
+      background-color: #e7e7e7;
+    }
+
+    &--star {
+      font-size: 2vh;
+    }
+  }
+}
+
+::ng-deep .product__content__img.ant-skeleton-element > .ant-skeleton-image {
+  width: 100%;
+  height: 100%;
+}

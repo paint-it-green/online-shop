@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from "@angular/core";
 
-import { IProduct } from "src/app/core/interface";
+import { IProduct } from "../../interfaces";
+import { ProductService } from "../../services";
 
 @Component({
   selector: "app-product-item",
@@ -9,19 +10,15 @@ import { IProduct } from "src/app/core/interface";
 })
 export class ProductItemComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private _productService: ProductService
+  ) { }
 
   @Input()
   item!: IProduct;
 
   ngOnInit(): void {
-    this.item = this._addCustomDetails(this.item);
-  }
-
-  private _addCustomDetails(item: IProduct): IProduct {
-    item.totalSold = `${((Math.random() * 9) + 1).toFixed(1)}K`;
-    item.rating = Math.ceil(Math.random() * 5);
-    return item;
+    this.item = this._productService.addCustomDetails(this.item);
   }
 
 }

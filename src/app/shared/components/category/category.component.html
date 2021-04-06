@@ -1,13 +1,42 @@
-<ul nz-menu nzMode="inline" class="category">
-  <li nz-menu-group nzTitle="Categories">
-    <ul>
-      <li *ngIf="categoryLoader">
-        <nz-skeleton-element nzType="input" [nzActive]="true" class="category--skeleton"
-          *ngFor="let item of [1,2,3,4,5]"> </nz-skeleton-element>
-      </li>
-      <li nz-menu-item [nzSelected]="category === selectedCategory" class="category--item"
-        *ngFor="let category of categories" (click)="selectCategory(category)">
-        {{category}}</li>
-    </ul>
-  </li>
-</ul>
+<ng-container *ngIf="type === undefined; then undefinedTemplate; else categoryTemplate"></ng-container>
+
+<ng-template #undefinedTemplate></ng-template>
+
+<ng-template #categoryTemplate>
+  <ng-container *ngIf="type === 'sidebar'; then sidebarTemplate; else tileTemplate"></ng-container>
+</ng-template>
+
+<ng-template #sidebarTemplate>
+  <ul nz-menu nzMode="inline" class="category">
+    <li nz-menu-group nzTitle="Categories">
+      <ul>
+        <ng-template [ngIf]="isLoading" [ngIfElse]="sidebar">
+          <nz-skeleton-element nzType="input" [nzActive]="true" class="category--skeleton"
+            *ngFor="let item of [1,2,3,4,5]">
+          </nz-skeleton-element>
+        </ng-template>
+        <ng-template #sidebar>
+          <li nz-menu-item [nzSelected]="category === selectedCategory" class="category--item"
+            *ngFor="let category of categories" (click)="selectCategory(category)">
+            {{category}}</li>
+        </ng-template>
+
+      </ul>
+    </li>
+  </ul>
+</ng-template>
+
+<ng-template #tileTemplate class="category">
+  <ng-template [ngIf]="isLoading" [ngIfElse]="tile">
+    <div *ngFor="let item of [1,2,3,4,5]" class="category--skeleton category--tile">
+      <nz-skeleton-element nzType="image" [nzActive]="true"> </nz-skeleton-element>
+    </div>
+  </ng-template>
+  <ng-template #tile>
+    <div class="category--tile" *ngFor="let category of categories" (click)="selectCategory(category.name)">
+      <img [src]="category.icon" alt="" class="category--tile__img">
+      <h3 class="category--tile--name">{{category.name}}</h3>
+    </div>
+  </ng-template>
+
+</ng-template>
