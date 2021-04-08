@@ -1,0 +1,27 @@
+<div class="hint" *ngIf="randomUser">
+  Use <span>{{randomUser.username}}</span> for username and <span>{{randomUser.password}}</span> for password.
+</div>
+<div class="error-message" *ngIf="errorMessage">
+  {{errorMessage}}
+</div>
+<form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+  <nz-form-item>
+    <nz-form-control nzErrorTip="Please input your username!">
+      <nz-input-group nzPrefixIcon="user">
+        <input type="text" nz-input formControlName="username" placeholder="Username" />
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control nzErrorTip="Please input your Password!">
+      <nz-input-group nzPrefixIcon="lock">
+        <input type="password" nz-input formControlName="password" placeholder="Password" />
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <div nz-row class="login-form--margin">
+    <a class="login-form--forgot">Forgot password</a>
+  </div>
+  <button nz-button class="login-form__btn login-form--margin" [nzType]="'primary'" type="submit">Log in</button>
+  Or <a> register now! </a>
+</form>
