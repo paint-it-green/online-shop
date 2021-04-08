@@ -1,8 +1,19 @@
 .app {
+  min-height: 100%;
+
   &__header {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
+
+    &__menu {
+      > li {
+        text-transform: capitalize;
+      }
+      > li.no-bg {
+        background-color: transparent;
+      }
+    }
   }
 
   &__content {

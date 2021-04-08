@@ -4,7 +4,6 @@ import en from "@angular/common/locales/en";
 import { HttpClientModule } from "@angular/common/http";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { FormsModule } from "@angular/forms";
 
 import { NZ_I18N, en_US } from "ng-zorro-antd/i18n";
 
@@ -21,7 +20,6 @@ registerLocaleData(en);
   ],
   imports: [
     BrowserModule,
-    FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
     AppRoutingModule,
