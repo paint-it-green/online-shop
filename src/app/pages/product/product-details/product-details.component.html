@@ -60,10 +60,10 @@
 
 
           <div>
-            <button nz-button nzType="primary" nzSize="large" class="product__purchase__btn cart">
+            <button nz-button nzType="primary" nzSize="large" class="product__purchase__btn cart" (click)="addToCart()">
               <i nz-icon nzType="shopping-cart" nzTheme="outline"></i>Add to Cart
             </button>
-            <button nz-button nzType="primary" nzSize="large" class="product__purchase__btn buy">
+            <button nz-button nzType="primary" nzSize="large" class="product__purchase__btn buy" (click)="buyNow()">
               Buy Now
             </button>
           </div>

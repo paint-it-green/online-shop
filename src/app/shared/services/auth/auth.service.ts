@@ -1,14 +1,20 @@
-import { Injectable } from "@angular/core";
+import { Injectable, ViewContainerRef } from "@angular/core";
+
+import { NzModalService } from "ng-zorro-antd/modal";
+import { Observable } from "rxjs";
 
 import { StorageEnum } from "../../enums";
 import { IUser } from "../../interfaces";
+import { LoginComponent } from "../../modals/login/login.component";
 
 @Injectable({
   providedIn: "root"
 })
 export class AuthService {
 
-  constructor() { }
+  constructor(
+    private _modal: NzModalService,
+  ) { }
 
   setUser(user: IUser): void {
     sessionStorage.setItem(StorageEnum.USER, JSON.stringify(user));
@@ -26,6 +32,28 @@ export class AuthService {
 
   logout(): void {
     sessionStorage.removeItem(StorageEnum.USER);
+  }
+
+  login(nzViewContainerRef: ViewContainerRef): Observable<boolean> {
+
+    return new Observable((subscribe) => {
+      const modal = this._modal.create({
+        nzTitle: "Login",
+        nzFooter: null,
+        nzMaskClosable: false,
+        nzContent: LoginComponent,
+        nzViewContainerRef
+      });
+
+      modal.afterClose
+        .subscribe((result: IUser | undefined) => {
+          if (result) {
+            this.setUser(result);
+          }
+          subscribe.next(!!result);
+          subscribe.complete();
+        });
+    })
   }
 
 }

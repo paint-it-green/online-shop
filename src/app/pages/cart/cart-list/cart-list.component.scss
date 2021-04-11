@@ -1,0 +1,29 @@
+.cart {
+  &--item {
+    &__img {
+      max-width: 7vh;
+      max-height: 7vh;
+      height: auto;
+      width: auto;
+    }
+    &--name {
+      vertical-align: top;
+    }
+    &__qty {
+      width: 12vh;
+      input {
+        text-align: center;
+      }
+    }
+    &--name,
+    &--total-price {
+      margin-left: 1vh;
+      font-weight: 500;
+    }
+    &--price {
+      color: #ee4d2d;
+      font-weight: bold;
+      font-size: 1.5vh;
+    }
+  }
+}
