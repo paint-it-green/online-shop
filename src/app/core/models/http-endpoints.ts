@@ -8,7 +8,9 @@ export class HttpEndpoints {
     products: "products/{id}",
     productCategories: "products/categories",
     productCategory: "products/category/{category}",
-    users: "users/{id}"
+    users: "users/{id}",
+    userCart: "carts/user/{id}",
+    carts: "carts",
   };
 
   getRequestOption({

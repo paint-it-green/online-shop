@@ -5,7 +5,6 @@ import { NzModalRef } from "ng-zorro-antd/modal";
 
 import { ApiService } from "src/app/core/services/api";
 import { IUser } from "../../interfaces";
-import { AuthService } from "../../services/auth/auth.service";
 
 @Component({
   selector: "app-login",
@@ -18,7 +17,6 @@ export class LoginComponent implements OnInit {
     private _modal: NzModalRef,
     private _fb: FormBuilder,
     private readonly _apiService: ApiService,
-    private _authService: AuthService
   ) { }
 
   validateForm!: FormGroup;
@@ -71,7 +69,6 @@ export class LoginComponent implements OnInit {
 
   private _onSuccessLogin(user: IUser): void {
     this._setErrorMessage("");
-    this._authService.setUser(user);
     return this._modal.destroy(user);
   }
 
@@ -80,7 +77,7 @@ export class LoginComponent implements OnInit {
   }
 
   private _getRandomUser(users: Array<IUser>): IUser {
-    const random = Math.floor(Math.random() * users.length);
+    const random = Math.floor(Math.random() * 3);
     return users[random];
   }
 

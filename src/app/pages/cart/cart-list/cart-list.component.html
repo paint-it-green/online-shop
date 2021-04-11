@@ -1,0 +1,49 @@
+<div>
+  <nz-table #rowSelectionTable nzShowPagination [nzData]="cart.products" [nzLoading]="isLoading"
+    (nzCurrentPageDataChange)="onCurrentPageDataChange($event)" class="cart">
+    <thead>
+      <tr>
+        <th [nzChecked]="checked" [nzIndeterminate]="indeterminate" (nzCheckedChange)="onAllChecked($event)"></th>
+        <th>Product</th>
+        <th>Unit Price</th>
+        <th>Quantity</th>
+        <th>Total Price</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of rowSelectionTable.data" class="cart--item">
+        <td [nzChecked]="setOfCheckedId.has(product.productId)"
+          (nzCheckedChange)="onItemChecked(product.productId, $event)">
+        </td>
+        <td>
+          <img [src]="product.product?.image" [alt]="product.product?.title" class="cart--item__img">
+          <span class="cart--item--name">{{ product.product?.title }}</span>
+        </td>
+        <td><span class="cart--item--price">${{product.product?.price | number:'1.2'}}</span></td>
+        <td>
+          <nz-input-group nzSearch nzSize="small" [nzPrefix]="minusButton" [nzSuffix]="plusButton"
+            class="cart--item__qty">
+            <input nz-input nz-tooltip nzTooltipTrigger="focus" nzTooltipPlacement="top"
+              nzOverlayClassName="numeric-input" [nzTooltipTitle]="'Input a number'" [(ngModel)]="product.quantity" />
+          </nz-input-group>
+          <ng-template #minusButton>
+            <button nz-button nzType="text" (click)="decreaseQty(product)">
+              <i nz-icon nzType="minus" nzTheme="outline"></i>
+            </button>
+          </ng-template>
+          <ng-template #plusButton>
+            <button nz-button nzType="text" (click)="increaseQty(product)">
+              <i nz-icon nzType="plus" nzTheme="outline"></i>
+            </button>
+          </ng-template>
+        </td>
+        <td><span class="cart--item--total-price">${{product.totalPrice | number:'1.2'}}</span></td>
+        <td>
+          <button nz-button nzType="primary" nzDanger nzSize="small"
+            (click)="confirmRemove(product.productId)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>

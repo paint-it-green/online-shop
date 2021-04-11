@@ -4,7 +4,7 @@ import { NzModalService } from "ng-zorro-antd/modal";
 import { IUser } from "./shared/interfaces";
 
 import { LoginComponent } from "./shared/modals/login/login.component";
-import { AuthService } from "./shared/services/auth/auth.service";
+import { AuthService } from "./shared/services";
 
 @Component({
   selector: "app-root",
